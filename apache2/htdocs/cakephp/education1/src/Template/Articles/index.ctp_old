@@ -1,0 +1,22 @@
+<h1>Blog articles</h1>
+<table>
+<tr>
+<th>ID</th>
+<th>title</th>
+<th>created</th>
+<th>action</th>
+</tr>
+
+<?php foreach($articles as $article): ?>
+<tr>
+<td><?= $article->id?></td>
+<td><?= $this->Html->link($article->title, ['action'=>'view', $article->id])?></td>
+<td><?= $article->created->format(DATE_RFC850) ?></td>
+<td>
+<?= $this->Form->postLink('Delete', ['action'=>'delete', $article->id],
+['confirm' => 'are you sure?'])?>
+<?= $this->Html->link('Edit', ['action'=>'edit', $article->id]) ?>
+</td>
+</tr>
+<?php endforeach ?>
+</table>

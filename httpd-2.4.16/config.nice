@@ -1,0 +1,13 @@
+#! /bin/sh
+#
+# Created by configure
+
+LIBS="-ldl"; export LIBS
+"./configure" \
+"--prefix=/usr/local/apache2/apache2/" \
+"--enable-ssl" \
+"--enable-rewrite" \
+"--with-ssl=/usr/local/apache2/openssl" \
+"LDFLAGS=" \
+"LIBS=-ldl" \
+"$@"

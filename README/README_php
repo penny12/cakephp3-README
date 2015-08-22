@@ -1,0 +1,42 @@
+# php configure
+  $ sudo apt-get install libmcrypt-dev
+  $ LDFLAGS="-L/usr/lib" CPPFLAGS="-I/usr/include" ./configure --prefix=/usr/local/apache2/php/ --with-apxs2=/usr/local/apache2/apache2/bin/apxs --with-mysql --with-openssl=/usr/local/apache2/openssl --enable-mbstring --enable-opcache --with-mcrypt --enable-intl --with-pdo-mysql --enable-mysqlnd
+
+  ---------- if connection error ----------
+
+  Database driver Cake\Database\Driver\Mysql cannot be used due to a missing PHP extension or unmet dependency
+  Cake\Database\Exception\MissingExtensionException
+
+  add follow flags
+
+  --with-pdo-mysql PDO: MySQL support. DIR is the MySQL base directory
+  --enable-mysqlnd Enable mysqlnd explicitly, will be done implicitly
+		   when required by other extensions
+
+  -----------------------------------------
+
+  # cake php
+  * create project
+  curl -s https://getcomposer.org/installer | /usr/local/apache2/php/bin/php
+  
+  -------------caution!!--------------
+  [Composer\Downloader\TransportException]                                                                                           
+  The "https://packagist.org/packages.json" file could not be downloaded: SSL operation failed with code 1. OpenSSL Error messages:  
+  error:14090086:SSL routines:ssl3_get_server_certificate:certificate verify failed                                                  
+  Failed to enable crypto                                                                                                            
+  failed to open stream: operation failed
+  ------------------------------------
+
+  * resolve method
+  0. php/bin/php -i | grep ini
+  1. check location Configuration File (php.ini) Path => xxx
+  2. cp php-5.xx.xx/php.ini-xxx [1.config file path location]
+  3. change openssl.cafile
+  ;openssl.cafile=
+  |
+  openssl.cafile=/usr/local/apache2/apache2/htdocs/cakephp/config/cacert.pem
+  4. # /usr/local/apache2/php/bin/php composer.phar create-project --prefer-dist cakephp/app test
+
+  # cakephp3 development caution point
+  Model/Table/xxx.php etc.. forget '<?php'
+  

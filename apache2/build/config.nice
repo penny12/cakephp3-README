@@ -1,0 +1,12 @@
+#! /bin/sh
+#
+# Created by configure
+
+"./configure" \
+"--prefix=/usr/local/apache2/apache2" \
+"--enable-rewrite" \
+"--enable-info" \
+"--enable-so" \
+"--with-ssl=/usr/local/apache2/httpd-2.2.29/modules/ssl" \
+"--enable-ssl" \
+"$@"
